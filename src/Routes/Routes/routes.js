@@ -12,7 +12,11 @@ export const router = createBrowserRouter([
         children: [
             { path: '/', element: <Home></Home> },
             { path: '/home', element: <Home></Home> },
-            { path: '/rooms', element: <Rooms></Rooms> },
+            {
+                path: '/rooms',
+                loader: () => fetch('data/rooms.json'),
+                element: <Rooms></Rooms>
+            },
         ],
         errorElement: <div>ERROR 404 FOUND!</div>
     },
