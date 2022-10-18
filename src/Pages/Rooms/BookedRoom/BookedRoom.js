@@ -4,6 +4,7 @@ import { useLoaderData } from 'react-router-dom';
 const BookedRoom = () => {
     const bookedRoom = useLoaderData();
     const { img, name, price, person, bed } = bookedRoom;
+
     return (
         <div>
             <h1 className='text-5xl font-bold text-center mb-10'>The Room is Booked:  {name}</h1>

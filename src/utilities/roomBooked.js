@@ -4,5 +4,5 @@ export const roomBooked = async (id) => {
 
     const bookingRoom = rooms.find(room => room.id === id);
 
-    return { bookingRoom };
+    return bookingRoom;
 }
