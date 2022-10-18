@@ -1,15 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+const SignUp = () => {
     return (
         <div className="hero min-h-screen bg-base-200">
-            <div className="hero-content flex-col lg:flex-row-reverse">
+            <div className="hero-content">
                 <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold">Login!</h1>
+                    <h1 className="text-5xl font-bold">SignUp!</h1>
                 </div>
                 <form className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <div className="card-body">
+                        <div className="form-control">
+                            <label htmlFor='name' className="label">
+                                <span className="label-text">Name</span>
+                            </label>
+                            <input type="text" name='name' id='name' placeholder="name" className="input input-bordered" />
+                        </div>
                         <div className="form-control">
                             <label htmlFor='email' className="label">
                                 <span className="label-text">Email</span>
@@ -22,13 +28,13 @@ const Login = () => {
                             </label>
                             <input type="password" name='password' id='password' placeholder="password" className="input input-bordered" />
                             <label className="label">
-                                <p className="label-text-alt link link-hover">Don't have an account?
-                                    <Link to='/signup'> Sign Up</Link>
+                                <p className="label-text-alt link link-hover">Already have an account?
+                                    <Link to='/login'> Login</Link>
                                 </p>
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-primary">Login</button>
+                            <button className="btn btn-primary">Sign Up</button>
                         </div>
                     </div>
                 </form>
@@ -37,4 +43,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignUp;
