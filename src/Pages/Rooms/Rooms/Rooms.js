@@ -4,7 +4,6 @@ import Room from '../Room/Room';
 
 const Rooms = () => {
     const rooms = useLoaderData();
-    console.log(rooms)
 
     return (
         <div>
