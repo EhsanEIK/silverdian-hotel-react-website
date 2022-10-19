@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext';
-import { FaGoogle } from "react-icons/fa";
+import { FaGoogle, FaFacebook } from "react-icons/fa";
 
 const Login = () => {
-    const { signIn, googelSignIn } = useContext(AuthContext);
+    const { signIn, googelSignIn, facebookSignIn } = useContext(AuthContext);
     const [successMsg, setSuccessMsg] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
 
@@ -33,6 +33,13 @@ const Login = () => {
 
     const handleGoogleLogin = () => {
         googelSignIn().then(result => {
+            setSuccessMsg("Login Successfully.")
+            navigate(from, { replace: true });
+        })
+            .catch(error => setErrorMsg(error.message));
+    }
+    const handleFacebookLogin = () => {
+        facebookSignIn().then(result => {
             setSuccessMsg("Login Successfully.")
             navigate(from, { replace: true });
         })
@@ -70,7 +77,10 @@ const Login = () => {
                             <button className="btn btn-primary">Login</button>
                         </div>
                         <div className="form-control">
-                            <button onClick={handleGoogleLogin} className="btn btn-primary"><FaGoogle /><span className='ml-2'>Login via Google</span></button>
+                            <button onClick={handleGoogleLogin} className="btn bg-yellow-600"><FaGoogle /><span className='ml-2'>Login via Google</span></button>
+                        </div>
+                        <div className="form-control">
+                            <button onClick={handleFacebookLogin} className="btn bg-blue-600"><FaFacebook /><span className='ml-2'>Login via Facebook</span></button>
                         </div>
                     </div>
                 </form>
