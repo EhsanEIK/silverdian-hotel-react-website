@@ -1,14 +1,39 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/UserContext';
 
 const Login = () => {
+    const { signIn } = useContext(AuthContext);
+    const [successMsg, setSuccessMsg] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
+
+    const handleSubmitLogin = event => {
+        event.preventDefault();
+        setSuccessMsg('');
+        setErrorMsg('');
+
+        const form = event.target;
+        // const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        signIn(email, password)
+            .then(result => {
+                setSuccessMsg("Login Successfully.")
+                form.reset();
+            })
+            .catch(error => setErrorMsg(error.message));
+    }
+
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold">Login!</h1>
+                    <p className='text-green-800'>{successMsg}</p>
+                    <p className='text-red-800'>{errorMsg}</p>
                 </div>
-                <form className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                <form onSubmit={handleSubmitLogin} className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <div className="card-body">
                         <div className="form-control">
                             <label htmlFor='email' className="label">
