@@ -1,11 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext';
+import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
-    const { signIn } = useContext(AuthContext);
+    const { signIn, googelSignIn } = useContext(AuthContext);
     const [successMsg, setSuccessMsg] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
+
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
@@ -26,6 +28,14 @@ const Login = () => {
                 form.reset();
                 navigate(from, { replace: true });
             })
+            .catch(error => setErrorMsg(error.message));
+    }
+
+    const handleGoogleLogin = () => {
+        googelSignIn().then(result => {
+            setSuccessMsg("Login Successfully.")
+            navigate(from, { replace: true });
+        })
             .catch(error => setErrorMsg(error.message));
     }
 
@@ -58,6 +68,9 @@ const Login = () => {
                         </div>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Login</button>
+                        </div>
+                        <div className="form-control">
+                            <button onClick={handleGoogleLogin} className="btn btn-primary"><FaGoogle /><span className='ml-2'>Login via Google</span></button>
                         </div>
                     </div>
                 </form>
