@@ -29,9 +29,9 @@ const SignUp = () => {
 
     return (
         <div className="hero min-h-screen bg-base-200">
-            <div className="hero-content">
+            <div className="hero-content flex-col md:flex-row">
                 <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold">SignUp!</h1>
+                    <h1 className="text-5xl font-bold md:mb-0 mb-3">SignUp!</h1>
                     <p className='text-green-800'>{successMsg}</p>
                     <p className='text-red-800'>{errorMsg}</p>
                 </div>

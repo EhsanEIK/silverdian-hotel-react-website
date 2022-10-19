@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Room = ({ room }) => {
     const { id, img, name, price, person, bed } = room;
     return (
-        <div className="card w-96 glass">
+        <div className="card w-auto glass">
             <figure><img src={img} alt={name} className='h-52 w-full' /></figure>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>

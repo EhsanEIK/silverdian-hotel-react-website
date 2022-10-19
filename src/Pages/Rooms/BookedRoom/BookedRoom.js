@@ -8,8 +8,8 @@ const BookedRoom = () => {
     return (
         <div>
             <h1 className='text-5xl font-bold text-center mb-10'>The Room is Booked:  {name}</h1>
-            <div className='flex justify-center mb-10'>
-                <div className="card w-96 glass">
+            <div className='flex justify-center mx-5 mb-10'>
+                <div className="card w-auto glass">
                     <figure><img src={img} alt={name} className='w-full' /></figure>
                     <div className="card-body">
                         <h2 className="card-title">{name}</h2>
@@ -17,7 +17,7 @@ const BookedRoom = () => {
                         <p>Person: {person}</p>
                         <p>Bed: {bed}</p>
                         <div className="card-actions mt-2">
-                            <button className="btn btn-primary w-full">Confirm</button>
+                            <button onClick={() => alert('Congratzz! You booked the room!')} className="btn btn-primary w-full">Confirm</button>
                         </div>
                     </div>
                 </div>
