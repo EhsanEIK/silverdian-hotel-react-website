@@ -12,16 +12,19 @@ const UserContext = ({ children }) => {
 
     // create a new user method
     const createUser = (email, password) => {
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
     // sign in method
     const signIn = (email, password) => {
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
 
     // log out method
     const logOut = () => {
+        setLoading(true);
         return signOut(auth);
     }
 

@@ -8,7 +8,7 @@ const Login = () => {
     const [errorMsg, setErrorMsg] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state.from.pathname || '/';
+    const from = location?.state?.from?.pathname || '/';
 
     const handleSubmitLogin = event => {
         event.preventDefault();
