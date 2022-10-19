@@ -9,10 +9,12 @@ const auth = getAuth(app);
 const UserContext = ({ children }) => {
     const [user, setUser] = useState({ email: 'Akash' });
 
+    // create a new user method
     const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
+    // sign in method
     const signIn = (email, password) => {
         return signInWithEmailAndPassword(auth, email, password);
     }
