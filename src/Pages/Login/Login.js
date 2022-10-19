@@ -32,13 +32,20 @@ const Login = () => {
     }
 
     const handleGoogleLogin = () => {
+        setSuccessMsg('');
+        setErrorMsg('');
+
         googelSignIn().then(result => {
             setSuccessMsg("Login Successfully.")
             navigate(from, { replace: true });
         })
             .catch(error => setErrorMsg(error.message));
     }
+
     const handleFacebookLogin = () => {
+        setSuccessMsg('');
+        setErrorMsg('');
+
         facebookSignIn().then(result => {
             setSuccessMsg("Login Successfully.")
             navigate(from, { replace: true });
