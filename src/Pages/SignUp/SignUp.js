@@ -1,23 +1,28 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext';
 
 const SignUp = () => {
     const { createUser } = useContext(AuthContext);
+    const [successMsg, setSuccessMsg] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
 
     const handleSubmitRegister = event => {
         event.preventDefault();
+        setSuccessMsg('');
+        setErrorMsg('');
 
         const form = event.target;
-        const name = form.name.value;
+        // const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
 
         createUser(email, password)
             .then(result => {
+                setSuccessMsg("User Created Successfully.")
                 form.reset();
             })
-            .catch(error => console.error(error));
+            .catch(error => setErrorMsg(error.message));
     }
 
     return (
@@ -25,6 +30,8 @@ const SignUp = () => {
             <div className="hero-content">
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold">SignUp!</h1>
+                    <p className='text-green-800'>{successMsg}</p>
+                    <p className='text-red-800'>{errorMsg}</p>
                 </div>
                 <form onSubmit={handleSubmitRegister} className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <div className="card-body">
