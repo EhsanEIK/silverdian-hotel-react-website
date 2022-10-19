@@ -8,6 +8,7 @@ const auth = getAuth(app);
 
 const UserContext = ({ children }) => {
     const [user, setUser] = useState('');
+    const [loading, setLoading] = useState(true);
 
     // create a new user method
     const createUser = (email, password) => {
@@ -28,11 +29,12 @@ const UserContext = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
+            setLoading(false);
         });
         return () => unsubscribe();
     }, []);
 
-    const authInfo = { user, createUser, signIn, logOut };
+    const authInfo = { user, loading, createUser, signIn, logOut };
 
     return (
         <AuthContext.Provider value={authInfo}>
