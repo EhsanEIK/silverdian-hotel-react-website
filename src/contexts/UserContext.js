@@ -1,13 +1,13 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import app from '../firebase/firebase.config';
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
 
 export const AuthContext = createContext();
 
 const auth = getAuth(app);
 
 const UserContext = ({ children }) => {
-    const [user, setUser] = useState({ email: 'Akash' });
+    const [user, setUser] = useState('');
 
     // create a new user method
     const createUser = (email, password) => {
@@ -18,6 +18,14 @@ const UserContext = ({ children }) => {
     const signIn = (email, password) => {
         return signInWithEmailAndPassword(auth, email, password);
     }
+
+    //set the user
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+            setUser(currentUser);
+        });
+        return () => unsubscribe();
+    }, []);
 
     const authInfo = { user, createUser, signIn };
 
