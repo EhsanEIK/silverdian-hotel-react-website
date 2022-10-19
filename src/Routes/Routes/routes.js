@@ -6,6 +6,7 @@ import BookedRoom from "../../Pages/Rooms/BookedRoom/BookedRoom";
 import Rooms from "../../Pages/Rooms/Rooms/Rooms";
 import SignUp from "../../Pages/SignUp/SignUp";
 import { roomBooked } from "../../utilities/roomBooked";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -22,7 +23,7 @@ export const router = createBrowserRouter([
             {
                 path: '/room/:id',
                 loader: ({ params }) => roomBooked(params.id),
-                element: <BookedRoom></BookedRoom>
+                element: <PrivateRoute><BookedRoom></BookedRoom></PrivateRoute>
             },
         ],
         errorElement: <div>ERROR 404 FOUND!</div>
