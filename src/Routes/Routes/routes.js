@@ -17,7 +17,7 @@ export const router = createBrowserRouter([
             { path: '/home', element: <Home></Home> },
             {
                 path: '/rooms',
-                loader: () => fetch('https://mocki.io/v1/4bc4df99-72bb-40f3-bc99-3c5df8ac6936'),
+                loader: () => fetch('http://localhost:5000/rooms'),
                 element: <Rooms></Rooms>
             },
             {
